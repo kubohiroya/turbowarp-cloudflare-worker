@@ -1,0 +1,115 @@
+{
+  "extensionName": "TurboWarp HTTP Server Cloudflare",
+  "blocks": [
+    {
+      "opcode": "createHandlerIr",
+      "category": "core",
+      "blockType": "REPORTER",
+      "text": "Cloudflare handler [METHOD] [PATH] returns [BODY]",
+      "description": "Creates a minimal HTTP handler IR JSON entry for the Cloudflare generator.",
+      "arguments": {
+        "METHOD": {"type": "STRING", "defaultValue": "GET"},
+        "PATH": {"type": "STRING", "defaultValue": "/hello"},
+        "BODY": {"type": "STRING", "defaultValue": "Hello from TurboWarp"}
+      }
+    },
+    {
+      "opcode": "createWorkerIr",
+      "category": "core",
+      "blockType": "REPORTER",
+      "text": "Cloudflare Worker [NAME] with handlers JSON [HANDLERS]",
+      "description": "Creates a deployable Worker IR JSON document from handler entries.",
+      "arguments": {
+        "NAME": {"type": "STRING", "defaultValue": "tw-http-app"},
+        "HANDLERS": {"type": "STRING", "defaultValue": "[]"}
+      }
+    },
+    {
+      "opcode": "generateFilesJson",
+      "category": "core",
+      "blockType": "REPORTER",
+      "text": "generated Cloudflare files JSON from IR [IR]",
+      "description": "Runs the Cloudflare Workers/Hono generator and returns GeneratedFile[] as JSON.",
+      "arguments": {
+        "IR": {"type": "STRING", "defaultValue": "{\"name\":\"tw-http-app\",\"handlers\":[]}"}
+      }
+    },
+    {
+      "kind": "separator",
+      "category": "auth"
+    },
+    {
+      "opcode": "createProtectedRouteIr",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "protected route [METHOD] [PATH] when unauthenticated [ON_UNAUTHENTICATED]",
+      "description": "Creates an auth guard IR entry for a route protected by external OAuth/OIDC.",
+      "arguments": {
+        "METHOD": {"type": "STRING", "defaultValue": "GET"},
+        "PATH": {"type": "STRING", "defaultValue": "/private"},
+        "ON_UNAUTHENTICATED": {"type": "STRING", "defaultValue": "redirect-login"}
+      }
+    },
+    {
+      "opcode": "createAuthIr",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "external OAuth/OIDC auth providers [PROVIDERS] protected routes JSON [PROTECTED_ROUTES]",
+      "description": "Creates auth IR for Google, Microsoft, and GitHub account sign-in.",
+      "arguments": {
+        "PROVIDERS": {"type": "STRING", "defaultValue": "google,github"},
+        "PROTECTED_ROUTES": {"type": "STRING", "defaultValue": "[]"}
+      }
+    },
+    {
+      "opcode": "createBearerRouteIr",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "API route [METHOD] [PATH] requires bearer token",
+      "description": "Creates a protected route IR entry that requires a valid self-issued ES256 bearer JWT.",
+      "arguments": {
+        "METHOD": {"type": "STRING", "defaultValue": "GET"},
+        "PATH": {"type": "STRING", "defaultValue": "/api/items"}
+      }
+    },
+    {
+      "opcode": "createBearerRoleRouteIr",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "API route [METHOD] [PATH] requires bearer role [ROLE]",
+      "description": "Creates a bearer JWT protected route IR entry that also requires a role claim.",
+      "arguments": {
+        "METHOD": {"type": "STRING", "defaultValue": "POST"},
+        "PATH": {"type": "STRING", "defaultValue": "/api/admin"},
+        "ROLE": {"type": "STRING", "defaultValue": "admin"}
+      }
+    },
+    {
+      "opcode": "createBearerScopeRouteIr",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "API route [METHOD] [PATH] requires bearer scope [SCOPE]",
+      "description": "Creates a bearer JWT protected route IR entry that also requires one or more scopes.",
+      "arguments": {
+        "METHOD": {"type": "STRING", "defaultValue": "POST"},
+        "PATH": {"type": "STRING", "defaultValue": "/api/posts"},
+        "SCOPE": {"type": "STRING", "defaultValue": "posts:write"}
+      }
+    },
+    {
+      "opcode": "createWorkerIrWithAuth",
+      "category": "auth",
+      "blockType": "REPORTER",
+      "text": "Cloudflare Worker [NAME] with handlers JSON [HANDLERS] and auth JSON [AUTH]",
+      "description": "Creates Worker IR with an external OAuth/OIDC auth policy.",
+      "arguments": {
+        "NAME": {"type": "STRING", "defaultValue": "tw-http-app"},
+        "HANDLERS": {"type": "STRING", "defaultValue": "[]"},
+        "AUTH": {
+          "type": "STRING",
+          "defaultValue": "{\"mode\":\"external-oauth-oidc\",\"providers\":[\"google\"],\"protectedRoutes\":[]}"
+        }
+      }
+    }
+  ]
+}
