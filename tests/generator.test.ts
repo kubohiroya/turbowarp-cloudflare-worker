@@ -1,5 +1,11 @@
+import {execFile} from 'node:child_process';
+import {mkdir, mkdtemp, rm, writeFile} from 'node:fs/promises';
+import {dirname, join} from 'node:path';
+import {promisify} from 'node:util';
 import {describe, expect, it} from 'vitest';
 import {generateCloudflareWorkerFiles} from '../src/generator.js';
+
+const execFileAsync = promisify(execFile);
 
 describe('generateCloudflareWorkerFiles', () => {
   it('generates the minimal Cloudflare Worker files', () => {
@@ -75,6 +81,10 @@ describe('generateCloudflareWorkerFiles', () => {
     expect(source).toContain('https://www.googleapis.com/oauth2/v3/certs');
     expect(source).toContain('https://api.github.com/user/emails');
     expect(source).toContain('async function loadGithubPrimaryEmail');
+    expect(source).toContain('subject: providerSubject(provider, claims)');
+    expect(source).toContain('subject: providerSubject(provider, profile)');
+    expect(source).toContain('function subjectClaim');
+    expect(source).toContain('function providerSubject');
     expect(source).toContain('OAuth/OIDC token exchange failed');
   });
 
@@ -113,5 +123,44 @@ describe('generateCloudflareWorkerFiles', () => {
     expect(source).toContain('insufficient_scope');
     expect(source).toContain('"requiredScopes": [');
     expect(source).toContain('"posts:write"');
+  });
+
+  it('generates auth worker source that passes TypeScript checking', async () => {
+    const outDir = await mkdtemp(join(process.cwd(), '.tmp-generated-worker-'));
+    const files = generateCloudflareWorkerFiles({
+      name: 'tw-auth-app',
+      handlers: [{method: 'GET', path: '/private', responseText: 'Private'}],
+      storage: [{kind: 'd1', binding: 'DB', name: 'tw_db'}],
+      auth: {
+        mode: 'external-oauth-oidc',
+        providers: ['google', 'github', 'microsoft'],
+        session: 'signed-cookie',
+        protectedRoutes: [
+          {method: 'GET', path: '/private', onUnauthenticated: 'redirect-login'},
+          {
+            method: 'POST',
+            path: '/api/posts',
+            onUnauthenticated: 'json-401',
+            auth: 'bearer-jwt',
+            requiredRole: 'admin',
+            requiredScopes: ['posts:write']
+          }
+        ]
+      }
+    });
+
+    for (const file of files) {
+      const destination = join(outDir, file.path);
+      await mkdir(dirname(destination), {recursive: true});
+      await writeFile(destination, file.contents, 'utf8');
+    }
+
+    try {
+      await execFileAsync('pnpm', ['exec', 'tsc', '--noEmit', '-p', outDir], {
+        cwd: process.cwd()
+      });
+    } finally {
+      await rm(outDir, {force: true, recursive: true});
+    }
   });
 });

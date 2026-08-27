@@ -12,6 +12,9 @@ importers:
         specifier: ^4.10.7
         version: 4.13.4
     devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^5.20260826.1
+        version: 5.20260826.1
       '@eslint/js':
         specifier: ^9.39.5
         version: 9.39.5
@@ -38,6 +41,9 @@ importers:
         version: 4.1.10(@types/node@24.13.3)(vite@7.3.6(@types/node@24.13.3))
 
 packages:
+
+  '@cloudflare/workers-types@5.20260826.1':
+    resolution: {integrity: sha512-hyW0QHvJYKhsMTAx1YZkbhcXBr17Brl1xZwvVExYmB5pAExJCCzAEouKNGwag2H+yBlqLay3X3kZoiJoGu2DRw==}
 
   '@esbuild/aix-ppc64@0.28.1':
     resolution: {integrity: sha512-Svl7tq8k/08+p6CXPpRjQ1fKX+1odH/BQbb48fV6fj3CWHhsoIOoY87w1oHXm0qEpkIK3ZfVgp0hed3XBXzXMQ==}
@@ -1023,6 +1029,8 @@ packages:
     engines: {node: '>=10'}
 
 snapshots:
+
+  '@cloudflare/workers-types@5.20260826.1': {}
 
   '@esbuild/aix-ppc64@0.28.1':
     optional: true
