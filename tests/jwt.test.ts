@@ -56,4 +56,28 @@ describe('JWT CLI helpers', () => {
     expect(parseTtl('1h')).toBe(3600);
     expect(parseTtl('7d')).toBe(604800);
   });
+
+  it('uses worker name defaults for issuer and audience', async () => {
+    const outDir = await mkdtemp(join(tmpdir(), 'tw-auth-'));
+    const key = await generateEs256JwtKey({outDir, kid: 'worker-key'});
+    const token = await issueEs256Jwt({
+      keyPath: key.privateKeyPath,
+      subject: 'client',
+      role: 'user',
+      scopes: [],
+      workerName: 'tw-api-app',
+      ttlSeconds: 3600
+    });
+    const [, encodedPayload] = token.split('.');
+    if (!encodedPayload) throw new Error('JWT must contain a payload.');
+    const payload = JSON.parse(Buffer.from(encodedPayload, 'base64url').toString('utf8')) as {
+      iss: string;
+      aud: string;
+    };
+
+    expect(payload).toMatchObject({
+      iss: 'https://tw-api-app.workers.dev',
+      aud: 'tw-api-app'
+    });
+  });
 });

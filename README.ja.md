@@ -83,11 +83,11 @@ APIサーバ向けのBearer JWTを使う場合は、ローカルCLIでES256鍵�
 node dist/cli.js auth keygen --out .tw-auth
 node dist/cli.js auth issue-token \
   --key .tw-auth/private-key.jwk \
+  --worker-name tw-api-app \
   --sub teacher \
   --role admin \
   --scope posts:read \
   --scope posts:write \
-  --audience tw-api-app \
   --ttl 1h
 ```
 

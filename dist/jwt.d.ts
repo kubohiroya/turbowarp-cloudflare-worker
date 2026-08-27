@@ -7,6 +7,7 @@ export interface JwtIssueOptions {
     subject: string;
     role: string;
     scopes: string[];
+    workerName?: string;
     issuer?: string;
     audience?: string;
     ttlSeconds?: number;

@@ -39,6 +39,7 @@ async function runAuthCommand(argv) {
         const subject = requireFlag(argv, '--sub');
         const role = valueAfter(argv, '--role') ?? 'user';
         const scopes = valuesAfter(argv, '--scope').flatMap(parseScopes);
+        const workerName = valueAfter(argv, '--worker-name');
         const issuer = valueAfter(argv, '--issuer');
         const audience = valueAfter(argv, '--audience');
         const ttlSeconds = parseTtl(valueAfter(argv, '--ttl'));
@@ -47,6 +48,7 @@ async function runAuthCommand(argv) {
             subject,
             role,
             scopes,
+            ...(workerName === undefined ? {} : { workerName }),
             ...(issuer === undefined ? {} : { issuer }),
             ...(audience === undefined ? {} : { audience }),
             ttlSeconds
@@ -72,7 +74,7 @@ function printHelp() {
         '  turbowarp-http-server-cloudflare generate --input worker-ir.json --out dist-worker',
         '  turbowarp-http-server-cloudflare --input worker-ir.json --out dist-worker',
         '  turbowarp-http-server-cloudflare auth keygen --out .tw-auth',
-        '  turbowarp-http-server-cloudflare auth issue-token --key .tw-auth/private-key.jwk --sub teacher --role admin --scope posts:read --scope posts:write',
+        '  turbowarp-http-server-cloudflare auth issue-token --key .tw-auth/private-key.jwk --worker-name tw-api-app --sub teacher --role admin --scope posts:read --scope posts:write',
         '',
         'The generate command input file must contain CloudflareWorkerIr JSON.',
         'The auth commands create local ES256 bearer JWT keys and issue API tokens.'

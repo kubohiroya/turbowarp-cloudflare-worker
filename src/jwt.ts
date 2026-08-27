@@ -12,6 +12,7 @@ export interface JwtIssueOptions {
   subject: string;
   role: string;
   scopes: string[];
+  workerName?: string;
   issuer?: string;
   audience?: string;
   ttlSeconds?: number;
@@ -41,7 +42,6 @@ type JwtJwk = JsonWebKey & {
   key_ops: string[];
 };
 
-const DEFAULT_AUDIENCE = 'turbowarp-http-server-cloudflare';
 const DEFAULT_TTL_SECONDS = 60 * 60;
 
 export async function generateEs256JwtKey(options: JwtKeygenOptions): Promise<JwtKeygenResult> {
@@ -71,7 +71,7 @@ export async function generateEs256JwtKey(options: JwtKeygenOptions): Promise<Jw
 export async function issueEs256Jwt(options: JwtIssueOptions): Promise<string> {
   const privateJwk = JSON.parse(await readFile(options.keyPath, 'utf8')) as Es256PrivateJwk;
   const now = Math.floor(Date.now() / 1000);
-  const audience = options.audience ?? DEFAULT_AUDIENCE;
+  const audience = options.audience ?? options.workerName ?? 'turbowarp-http-server-cloudflare';
   const issuer = options.issuer ?? `https://${audience}.workers.dev`;
   const ttlSeconds = options.ttlSeconds ?? DEFAULT_TTL_SECONDS;
   const header = {

@@ -101,6 +101,12 @@ describe('generateCloudflareWorkerFiles', () => {
     const source = files.find((file) => file.path === 'src/index.ts')?.contents ?? '';
 
     expect(source).toContain('BEARER_JWKS: string;');
+    expect(source).toContain('const defaultBearerJwtIssuer = "https://tw-api-app.workers.dev";');
+    expect(source).toContain('const defaultBearerJwtAudience = "tw-api-app";');
+    expect(source).toContain('const expectedIssuer = env.BEARER_JWT_ISSUER ?? defaultBearerJwtIssuer;');
+    expect(source).toContain(
+      'const expectedAudience = env.BEARER_JWT_AUDIENCE ?? defaultBearerJwtAudience;'
+    );
     expect(source).toContain('async function verifyBearerRequest');
     expect(source).toContain('async function verifyEs256BearerJwt');
     expect(source).toContain('insufficient_role');
