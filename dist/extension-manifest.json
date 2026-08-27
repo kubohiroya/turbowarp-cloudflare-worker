@@ -1,0 +1,149 @@
+{
+  "formatVersion": 1,
+  "id": "kubohiroyahttpservercloudflare",
+  "blocks": [
+    {
+      "opcode": "createAuthIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "PROTECTED_ROUTES",
+          "type": "STRING"
+        },
+        {
+          "id": "PROVIDERS",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createBearerRoleRouteIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "METHOD",
+          "type": "STRING"
+        },
+        {
+          "id": "PATH",
+          "type": "STRING"
+        },
+        {
+          "id": "ROLE",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createBearerRouteIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "METHOD",
+          "type": "STRING"
+        },
+        {
+          "id": "PATH",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createBearerScopeRouteIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "METHOD",
+          "type": "STRING"
+        },
+        {
+          "id": "PATH",
+          "type": "STRING"
+        },
+        {
+          "id": "SCOPE",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createHandlerIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "BODY",
+          "type": "STRING"
+        },
+        {
+          "id": "METHOD",
+          "type": "STRING"
+        },
+        {
+          "id": "PATH",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createProtectedRouteIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "METHOD",
+          "type": "STRING"
+        },
+        {
+          "id": "ON_UNAUTHENTICATED",
+          "type": "STRING"
+        },
+        {
+          "id": "PATH",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createWorkerIr",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "HANDLERS",
+          "type": "STRING"
+        },
+        {
+          "id": "NAME",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "createWorkerIrWithAuth",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "AUTH",
+          "type": "STRING"
+        },
+        {
+          "id": "HANDLERS",
+          "type": "STRING"
+        },
+        {
+          "id": "NAME",
+          "type": "STRING"
+        }
+      ]
+    },
+    {
+      "opcode": "generateFilesJson",
+      "blockType": "REPORTER",
+      "arguments": [
+        {
+          "id": "IR",
+          "type": "STRING"
+        }
+      ]
+    }
+  ],
+  "menus": []
+}
