@@ -1,8 +1,51 @@
 import {access, readFile} from 'node:fs/promises';
-const errors = [];
 
-const packageMetadata = JSON.parse(await readFile('package.json', 'utf8'));
-const policy = JSON.parse(await readFile('repo-policy.json', 'utf8'));
+interface PackageMetadata {
+  name: string;
+  version: string;
+  description?: string;
+  author?: string;
+  license?: string;
+  homepage?: string;
+  packageManager?: string;
+  engines?: {node?: string};
+  repository?: {url?: string};
+  bugs?: {url?: string};
+  files?: string[];
+  bin?: Record<string, string>;
+  scripts?: Record<string, string>;
+  dependencies?: Record<string, string>;
+  devDependencies?: Record<string, string>;
+  peerDependencies?: Record<string, string>;
+}
+
+interface RepoPolicy {
+  schemaVersion: number;
+  productName: string;
+  packageType: string;
+  licensePolicy: string;
+  readmeLanguages: string[];
+  canonicalReadme: string;
+  localizedReadmes: {
+    ja: string;
+  };
+  node: {
+    minimum: string;
+  };
+  packageManager: string;
+  requiredFiles: string[];
+  exceptions: {
+    upstreamFork: boolean;
+    mixedContentLicenses: boolean;
+    legacyPackageName: boolean;
+    thirdPartyBundle: boolean;
+  };
+  migrationChecklist: string[];
+}
+const errors: string[] = [];
+
+const packageMetadata = JSON.parse(await readFile('package.json', 'utf8')) as PackageMetadata;
+const policy = JSON.parse(await readFile('repo-policy.json', 'utf8')) as RepoPolicy;
 const readme = await readFile(policy.canonicalReadme, 'utf8');
 const readmeJa = await readFile(policy.localizedReadmes.ja, 'utf8');
 const license = await readFile('LICENSE', 'utf8');
@@ -38,9 +81,10 @@ function checkPolicy() {
 }
 
 function checkPackageMetadata() {
-  const requiredStrings = ['description', 'author', 'license', 'homepage', 'packageManager'];
+  const requiredStrings = ['description', 'author', 'license', 'homepage', 'packageManager'] as const;
   for (const key of requiredStrings) {
-    if (typeof packageMetadata[key] !== 'string' || packageMetadata[key].trim().length === 0) {
+    const value = packageMetadata[key];
+    if (typeof value !== 'string' || value.trim().length === 0) {
       errors.push(`package.json ${key} must be a non-empty string`);
     }
   }
@@ -48,8 +92,8 @@ function checkPackageMetadata() {
   if (!packageMetadata.packageManager?.startsWith('pnpm@')) {
     errors.push('package.json packageManager must pin pnpm exactly');
   }
-  if (packageMetadata.engines?.node !== '>=22') {
-    errors.push('package.json engines.node must be >=22');
+  if (packageMetadata.engines?.node !== '>=22.18.0') {
+    errors.push('package.json engines.node must be >=22.18.0');
   }
   if (packageMetadata.name !== '@kubohiroya/turbowarp-http-server-cloudflare') {
     errors.push('package.json name must be @kubohiroya/turbowarp-http-server-cloudflare');
@@ -133,7 +177,7 @@ async function checkRequiredFiles() {
   await access('pnpm-lock.yaml');
 }
 
-function extractConfigValue(key) {
+function extractConfigValue(key: string): string {
   const match = config.match(new RegExp(`${key}: '([^']+)'`));
   if (!match?.[1]) throw new Error(`src/config.ts must define ${key}`);
   return match[1];
