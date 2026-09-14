@@ -1,8 +1,8 @@
-# turbowarp-http-server-cloudflare
+# turbowarp-cloudflare-worker
 
 [日本語](README.ja.md)
 
-`@kubohiroya/turbowarp-http-server-cloudflare` is the Cloudflare integration package for the `turbowarp-http-server` family. It defines a shared IR, generates Cloudflare Workers TypeScript/Hono files, exposes a small CLI, and provides minimal TurboWarp blocks for IR creation.
+`@kubohiroya/turbowarp-cloudflare-worker` is the Cloudflare integration package for the `turbowarp-http-server` family. It defines a shared IR, generates Cloudflare Workers TypeScript/Hono files, exposes a small CLI, and provides minimal TurboWarp blocks for IR creation.
 
 The MVP target is Cloudflare Workers + TypeScript + Hono. Authentication is expected to use external OAuth/OIDC providers such as Google, Microsoft, or GitHub. Apple sign-in is intentionally out of scope for the MVP. Persistent storage is represented through Cloudflare D1, KV, R2, and Durable Objects bindings.
 

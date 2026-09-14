@@ -1,6 +1,6 @@
 {
   "formatVersion": 1,
-  "id": "kubohiroyahttpservercloudflare",
+  "id": "kubohiroyacloudflareworker",
   "blocks": [
     {
       "opcode": "createAuthIr",

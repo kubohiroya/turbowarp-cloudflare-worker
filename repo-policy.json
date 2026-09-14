@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "productName": "turbowarp-http-server-cloudflare",
+  "productName": "turbowarp-cloudflare-worker",
   "packageType": "cloudflare-codegen-extension",
   "licensePolicy": "mpl-2.0",
   "readmeLanguages": ["en", "ja"],

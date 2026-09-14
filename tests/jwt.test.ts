@@ -80,4 +80,27 @@ describe('JWT CLI helpers', () => {
       aud: 'tw-api-app'
     });
   });
+
+  it('preserves the legacy audience when no worker name or audience is provided', async () => {
+    const outDir = await mkdtemp(join(tmpdir(), 'tw-auth-'));
+    const key = await generateEs256JwtKey({outDir, kid: 'legacy-default-key'});
+    const token = await issueEs256Jwt({
+      keyPath: key.privateKeyPath,
+      subject: 'client',
+      role: 'user',
+      scopes: [],
+      ttlSeconds: 3600
+    });
+    const [, encodedPayload] = token.split('.');
+    if (!encodedPayload) throw new Error('JWT must contain a payload.');
+    const payload = JSON.parse(Buffer.from(encodedPayload, 'base64url').toString('utf8')) as {
+      iss: string;
+      aud: string;
+    };
+
+    expect(payload).toMatchObject({
+      iss: 'https://turbowarp-http-server-cloudflare.workers.dev',
+      aud: 'turbowarp-http-server-cloudflare'
+    });
+  });
 });

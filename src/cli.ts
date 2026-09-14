@@ -86,10 +86,10 @@ function printHelp(): void {
   process.stdout.write(
     [
       'Usage:',
-      '  turbowarp-http-server-cloudflare generate --input worker-ir.json --out dist-worker',
-      '  turbowarp-http-server-cloudflare --input worker-ir.json --out dist-worker',
-      '  turbowarp-http-server-cloudflare auth keygen --out .tw-auth',
-      '  turbowarp-http-server-cloudflare auth issue-token --key .tw-auth/private-key.jwk --worker-name tw-api-app --sub teacher --role admin --scope posts:read --scope posts:write',
+      '  turbowarp-cloudflare-worker generate --input worker-ir.json --out dist-worker',
+      '  turbowarp-cloudflare-worker --input worker-ir.json --out dist-worker',
+      '  turbowarp-cloudflare-worker auth keygen --out .tw-auth',
+      '  turbowarp-cloudflare-worker auth issue-token --key .tw-auth/private-key.jwk --worker-name tw-api-app --sub teacher --role admin --scope posts:read --scope posts:write',
       '',
       'The generate command input file must contain CloudflareWorkerIr JSON.',
       'The auth commands create local ES256 bearer JWT keys and issue API tokens.'

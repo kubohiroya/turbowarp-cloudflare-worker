@@ -2,7 +2,7 @@
 
 ## 位置づけ
 
-`turbowarp-http-server-cloudflare` は、`turbowarp-http-server` 本体から Cloudflare Workers 向けの生成・デプロイ補助を分離するためのパッケージです。
+`turbowarp-cloudflare-worker` は、`turbowarp-http-server` 本体からCloudflare Workers向けの生成・デプロイ補助を分離するためのパッケージです。
 
 本体リポジトリは TurboWarp 上で HTTP ハンドラをブロックとして表現し、ローカル実行や教育用の体験を成立させる責務を持ちます。一方、このリポジトリはそのブロック表現を Cloudflare Workers で動く TypeScript/Hono コードへ変換する責務を持ちます。
 

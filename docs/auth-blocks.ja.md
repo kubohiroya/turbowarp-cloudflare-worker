@@ -111,8 +111,8 @@ interface AuthBindingIr {
 APIサーバ向けには、ローカルCLIでES256鍵を生成し、APIアクセス用tokenを発行します。
 
 ```sh
-turbowarp-http-server-cloudflare auth keygen --out .tw-auth
-turbowarp-http-server-cloudflare auth issue-token \
+turbowarp-cloudflare-worker auth keygen --out .tw-auth
+turbowarp-cloudflare-worker auth issue-token \
   --key .tw-auth/private-key.jwk \
   --worker-name tw-api-app \
   --sub teacher \
@@ -125,6 +125,8 @@ turbowarp-http-server-cloudflare auth issue-token \
 `scope` claimはOAuth慣習に合わせて空白区切り文字列としてJWTへ入れます。IRとブロック側では配列として扱います。
 
 `--worker-name` を指定すると、issuer は `https://<worker-name>.workers.dev`、audience は `<worker-name>` になります。生成Worker側も同じ値を既定値として検証するため、`BEARER_JWT_ISSUER` / `BEARER_JWT_AUDIENCE` を設定し忘れても別用途のtokenを受け入れません。カスタムドメインや用途名を使う場合は `--issuer` / `--audience` と Worker側環境変数を合わせて指定します。
+
+package改名前から発行済みのtokenとの互換性を保つため、`--worker-name`と`--audience`をどちらも省略した場合の既定audienceは、legacy値`turbowarp-http-server-cloudflare`のまま維持します。新規構成では曖昧な既定値に依存せず、`--worker-name`または`--audience`を明示してください。
 
 ただし、MVPの生成器は認証ライブラリ相当の網羅的な検証までは行いません。productionで使う前に、少なくとも provider ごとのscope、Microsoft tenant制約、session cookie rotation、ログアウト後のprovider session、エラー画面、監査ログを確認します。必要に応じて Auth.js、Arctic、OpenID Client、またはCloudflare Accessの検証処理へ置き換えます。
 
