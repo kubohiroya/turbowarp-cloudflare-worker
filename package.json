@@ -1,16 +1,16 @@
 {
-  "name": "@kubohiroya/turbowarp-http-server-cloudflare",
+  "name": "@kubohiroya/turbowarp-cloudflare-worker",
   "version": "0.2.0",
   "description": "Cloudflare Workers TypeScript generator and TurboWarp extension bridge for turbowarp-http-server.",
   "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
   "license": "MPL-2.0",
-  "homepage": "https://github.com/kubohiroya/turbowarp-http-server-cloudflare#readme",
+  "homepage": "https://github.com/kubohiroya/turbowarp-cloudflare-worker#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kubohiroya/turbowarp-http-server-cloudflare.git"
+    "url": "git+https://github.com/kubohiroya/turbowarp-cloudflare-worker.git"
   },
   "bugs": {
-    "url": "https://github.com/kubohiroya/turbowarp-http-server-cloudflare/issues"
+    "url": "https://github.com/kubohiroya/turbowarp-cloudflare-worker/issues"
   },
   "keywords": [
     "turbowarp",
@@ -61,7 +61,7 @@
     "check:dist": "pnpm run build"
   },
   "bin": {
-    "turbowarp-http-server-cloudflare": "./dist/cli.js"
+    "turbowarp-cloudflare-worker": "./dist/cli.js"
   },
   "dependencies": {
     "hono": "^4.10.7"

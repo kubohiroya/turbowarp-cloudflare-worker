@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { webcrypto } from 'node:crypto';
 const DEFAULT_TTL_SECONDS = 60 * 60;
+// Keep the pre-rename value stable so existing default-audience tokens remain valid.
+const LEGACY_DEFAULT_AUDIENCE = 'turbowarp-http-server-cloudflare';
 export async function generateEs256JwtKey(options) {
     const kid = options.kid ?? randomId();
     const pair = await webcrypto.subtle.generateKey({ name: 'ECDSA', namedCurve: 'P-256' }, true, ['sign', 'verify']);
@@ -21,7 +23,7 @@ export async function generateEs256JwtKey(options) {
 export async function issueEs256Jwt(options) {
     const privateJwk = JSON.parse(await readFile(options.keyPath, 'utf8'));
     const now = Math.floor(Date.now() / 1000);
-    const audience = options.audience ?? options.workerName ?? 'turbowarp-http-server-cloudflare';
+    const audience = options.audience ?? options.workerName ?? LEGACY_DEFAULT_AUDIENCE;
     const issuer = options.issuer ?? `https://${audience}.workers.dev`;
     const ttlSeconds = options.ttlSeconds ?? DEFAULT_TTL_SECONDS;
     const header = {

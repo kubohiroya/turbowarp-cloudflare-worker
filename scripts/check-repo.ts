@@ -66,7 +66,7 @@ process.stdout.write('Repository policy is aligned.\n');
 
 function checkPolicy() {
   if (policy.schemaVersion !== 1) errors.push('repo-policy.json schemaVersion must be 1');
-  if (policy.productName !== 'turbowarp-http-server-cloudflare') {
+  if (policy.productName !== 'turbowarp-cloudflare-worker') {
     errors.push('repo-policy.json productName must match this repository');
   }
   if (policy.licensePolicy !== 'mpl-2.0') {
@@ -95,18 +95,18 @@ function checkPackageMetadata() {
   if (packageMetadata.engines?.node !== '>=22.18.0') {
     errors.push('package.json engines.node must be >=22.18.0');
   }
-  if (packageMetadata.name !== '@kubohiroya/turbowarp-http-server-cloudflare') {
-    errors.push('package.json name must be @kubohiroya/turbowarp-http-server-cloudflare');
+  if (packageMetadata.name !== '@kubohiroya/turbowarp-cloudflare-worker') {
+    errors.push('package.json name must be @kubohiroya/turbowarp-cloudflare-worker');
   }
   if (
     packageMetadata.repository?.url !==
-    'git+https://github.com/kubohiroya/turbowarp-http-server-cloudflare.git'
+    'git+https://github.com/kubohiroya/turbowarp-cloudflare-worker.git'
   ) {
     errors.push('package.json repository.url must point to the current repository');
   }
   if (
     packageMetadata.bugs?.url !==
-    'https://github.com/kubohiroya/turbowarp-http-server-cloudflare/issues'
+    'https://github.com/kubohiroya/turbowarp-cloudflare-worker/issues'
   ) {
     errors.push('package.json bugs.url must point to the current issue tracker');
   }
@@ -134,7 +134,7 @@ function checkReadmes() {
     errors.push('README.md must document the Cloudflare Workers + TypeScript + Hono target');
   }
   if (!readme.includes('MPL-2.0')) errors.push('README.md License section must include MPL-2.0');
-  if (!readmeJa.startsWith('# turbowarp-http-server-cloudflare\n')) {
+  if (!readmeJa.startsWith('# turbowarp-cloudflare-worker\n')) {
     errors.push('README.ja.md must mirror the product H1');
   }
   if (!readmeJa.includes('OAuth/OIDC')) errors.push('README.ja.md must mention OAuth/OIDC');
@@ -158,10 +158,10 @@ function checkLicense() {
 function checkGeneratedArtifacts() {
   const expectedBundle = `dist/${extractConfigValue('slug')}.js`;
   if (!packageMetadata.files?.includes('dist/')) errors.push('package.json files must include dist/');
-  if (packageMetadata.bin?.['turbowarp-http-server-cloudflare'] !== './dist/cli.js') {
+  if (packageMetadata.bin?.['turbowarp-cloudflare-worker'] !== './dist/cli.js') {
     errors.push('package.json bin must point to ./dist/cli.js');
   }
-  if (!expectedBundle.includes('turbowarp-http-server-cloudflare')) {
+  if (!expectedBundle.includes('turbowarp-cloudflare-worker')) {
     errors.push('src/config.ts slug must produce the Cloudflare extension bundle name');
   }
 }
