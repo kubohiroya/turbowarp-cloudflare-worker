@@ -2,6 +2,7 @@ import {execFile} from 'node:child_process';
 import {mkdir, mkdtemp, rm, writeFile} from 'node:fs/promises';
 import {dirname, join} from 'node:path';
 import {promisify} from 'node:util';
+import {fileURLToPath} from 'node:url';
 import {describe, expect, it} from 'vitest';
 import {generateCloudflareWorkerFiles} from '../src/generator.js';
 
@@ -156,7 +157,7 @@ describe('generateCloudflareWorkerFiles', () => {
     }
 
     try {
-      await execFileAsync('pnpm', ['exec', 'tsc', '--noEmit', '-p', outDir], {
+      await execFileAsync(process.execPath, [fileURLToPath(import.meta.resolve('typescript/bin/tsc')), '--noEmit', '-p', outDir], {
         cwd: process.cwd()
       });
     } finally {
