@@ -1,3 +1,4 @@
+import {fixedInputRegistration} from './fixed-input-editors.js';
 import {sourceEditorDefinitions} from './editor-schema.js';
 import {registerSourceEditors} from './source-editor.js';
 import {extensionConfig} from './config';
@@ -37,11 +38,14 @@ const authBlockIconUri =
   'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4=';
 
 export class CloudflareExtension implements TurboWarpExtension {
+  private readonly fixedInputs = fixedInputRegistration(typeof Scratch === 'undefined' ? undefined : Scratch);
+
   private readonly unregisterSourceEditors: () => void;
   public constructor() {this.unregisterSourceEditors = registerSourceEditors(Scratch, sourceEditorDefinitions);}
-  public dispose(): void {this.unregisterSourceEditors();}
+  public dispose(): void {this.fixedInputs.dispose(); this.unregisterSourceEditors();}
 
   public getInfo(): Record<string, unknown> {
+    this.fixedInputs.ensure(paletteDefinitions.flatMap(block => 'opcode' in block ? [`${extensionConfig.id}_${block.opcode}`] : []));
     return {
       id: extensionConfig.id,
       name: Scratch.translate(definitions.extensionName),

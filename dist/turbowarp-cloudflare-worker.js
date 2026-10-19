@@ -2719,16 +2719,16 @@
   	}
   }));
   var data_exports = /* @__PURE__ */ __exportAll({
-  	$id: () => $id$13,
+  	$id: () => $id$14,
   	additionalProperties: () => false,
   	default: () => data_default,
   	description: () => description,
   	properties: () => properties$11,
   	required: () => required$2,
   	type: () => type$11
-  }), $id$13, description, type$11, required$2, properties$11, data_default;
+  }), $id$14, description, type$11, required$2, properties$11, data_default;
   var init_data = __esmMin((() => {
-  	$id$13 = "https://raw.githubusercontent.com/ajv-validator/ajv/master/lib/refs/data.json#";
+  	$id$14 = "https://raw.githubusercontent.com/ajv-validator/ajv/master/lib/refs/data.json#";
   	description = "Meta-schema for $data reference (JSON AnySchema extension proposal)";
   	type$11 = "object";
   	required$2 = ["$data"];
@@ -2737,7 +2737,7 @@
   		"anyOf": [{ "format": "relative-json-pointer" }, { "format": "json-pointer" }]
   	} };
   	data_default = {
-  		$id: $id$13,
+  		$id: $id$14,
   		description,
   		type: type$11,
   		required: required$2,
@@ -5989,18 +5989,18 @@
   	};
   }));
   var json_schema_draft_07_exports = /* @__PURE__ */ __exportAll({
-  	$id: () => $id$12,
-  	$schema: () => $schema$12,
+  	$id: () => $id$13,
+  	$schema: () => $schema$13,
   	default: () => json_schema_draft_07_default,
   	definitions: () => definitions$1,
   	properties: () => properties$10,
   	title: () => title$8,
   	type: () => type$10
   });
-  var $schema$12, $id$12, title$8, definitions$1, type$10, properties$10, json_schema_draft_07_default;
+  var $schema$13, $id$13, title$8, definitions$1, type$10, properties$10, json_schema_draft_07_default;
   var init_json_schema_draft_07 = __esmMin((() => {
-  	$schema$12 = "http://json-schema.org/draft-07/schema#";
-  	$id$12 = "http://json-schema.org/draft-07/schema#";
+  	$schema$13 = "http://json-schema.org/draft-07/schema#";
+  	$id$13 = "http://json-schema.org/draft-07/schema#";
   	title$8 = "Core schema meta-schema";
   	definitions$1 = {
   		"schemaArray": {
@@ -6131,8 +6131,8 @@
   		"not": { "$ref": "#" }
   	};
   	json_schema_draft_07_default = {
-  		$schema: $schema$12,
-  		$id: $id$12,
+  		$schema: $schema$13,
+  		$id: $id$13,
   		title: title$8,
   		definitions: definitions$1,
   		type: type$10,
@@ -6504,8 +6504,8 @@
   var schema_exports = /* @__PURE__ */ __exportAll({
   	$comment: () => $comment,
   	$dynamicAnchor: () => $dynamicAnchor$7,
-  	$id: () => $id$11,
-  	$schema: () => $schema$11,
+  	$id: () => $id$12,
+  	$schema: () => $schema$12,
   	$vocabulary: () => $vocabulary$7,
   	allOf: () => allOf,
   	default: () => schema_default,
@@ -6513,10 +6513,10 @@
   	title: () => title$7,
   	type: () => type$9
   });
-  var $schema$11, $id$11, $vocabulary$7, $dynamicAnchor$7, title$7, allOf, type$9, $comment, properties$9, schema_default;
+  var $schema$12, $id$12, $vocabulary$7, $dynamicAnchor$7, title$7, allOf, type$9, $comment, properties$9, schema_default;
   var init_schema = __esmMin((() => {
-  	$schema$11 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$11 = "https://json-schema.org/draft/2020-12/schema";
+  	$schema$12 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$12 = "https://json-schema.org/draft/2020-12/schema";
   	$vocabulary$7 = {
   		"https://json-schema.org/draft/2020-12/vocab/core": true,
   		"https://json-schema.org/draft/2020-12/vocab/applicator": true,
@@ -6566,8 +6566,8 @@
   		}
   	};
   	schema_default = {
-  		$schema: $schema$11,
-  		$id: $id$11,
+  		$schema: $schema$12,
+  		$id: $id$12,
   		$vocabulary: $vocabulary$7,
   		$dynamicAnchor: $dynamicAnchor$7,
   		title: title$7,
@@ -6578,20 +6578,20 @@
   	};
   }));
   var applicator_exports = /* @__PURE__ */ __exportAll({
-  	$defs: () => $defs$2,
+  	$defs: () => $defs$3,
   	$dynamicAnchor: () => $dynamicAnchor$6,
-  	$id: () => $id$10,
-  	$schema: () => $schema$10,
+  	$id: () => $id$11,
+  	$schema: () => $schema$11,
   	$vocabulary: () => $vocabulary$6,
   	default: () => applicator_default,
   	properties: () => properties$8,
   	title: () => title$6,
   	type: () => type$8
   });
-  var $schema$10, $id$10, $vocabulary$6, $dynamicAnchor$6, title$6, type$8, properties$8, $defs$2, applicator_default;
+  var $schema$11, $id$11, $vocabulary$6, $dynamicAnchor$6, title$6, type$8, properties$8, $defs$3, applicator_default;
   var init_applicator = __esmMin((() => {
-  	$schema$10 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$10 = "https://json-schema.org/draft/2020-12/meta/applicator";
+  	$schema$11 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$11 = "https://json-schema.org/draft/2020-12/meta/applicator";
   	$vocabulary$6 = { "https://json-schema.org/draft/2020-12/vocab/applicator": true };
   	$dynamicAnchor$6 = "meta";
   	title$6 = "Applicator vocabulary meta-schema";
@@ -6626,36 +6626,36 @@
   		"oneOf": { "$ref": "#/$defs/schemaArray" },
   		"not": { "$dynamicRef": "#meta" }
   	};
-  	$defs$2 = { "schemaArray": {
+  	$defs$3 = { "schemaArray": {
   		"type": "array",
   		"minItems": 1,
   		"items": { "$dynamicRef": "#meta" }
   	} };
   	applicator_default = {
-  		$schema: $schema$10,
-  		$id: $id$10,
+  		$schema: $schema$11,
+  		$id: $id$11,
   		$vocabulary: $vocabulary$6,
   		$dynamicAnchor: $dynamicAnchor$6,
   		title: title$6,
   		type: type$8,
   		properties: properties$8,
-  		$defs: $defs$2
+  		$defs: $defs$3
   	};
   }));
   var unevaluated_exports = /* @__PURE__ */ __exportAll({
   	$dynamicAnchor: () => $dynamicAnchor$5,
-  	$id: () => $id$9,
-  	$schema: () => $schema$9,
+  	$id: () => $id$10,
+  	$schema: () => $schema$10,
   	$vocabulary: () => $vocabulary$5,
   	default: () => unevaluated_default,
   	properties: () => properties$7,
   	title: () => title$5,
   	type: () => type$7
   });
-  var $schema$9, $id$9, $vocabulary$5, $dynamicAnchor$5, title$5, type$7, properties$7, unevaluated_default;
+  var $schema$10, $id$10, $vocabulary$5, $dynamicAnchor$5, title$5, type$7, properties$7, unevaluated_default;
   var init_unevaluated = __esmMin((() => {
-  	$schema$9 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$9 = "https://json-schema.org/draft/2020-12/meta/unevaluated";
+  	$schema$10 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$10 = "https://json-schema.org/draft/2020-12/meta/unevaluated";
   	$vocabulary$5 = { "https://json-schema.org/draft/2020-12/vocab/unevaluated": true };
   	$dynamicAnchor$5 = "meta";
   	title$5 = "Unevaluated applicator vocabulary meta-schema";
@@ -6665,8 +6665,8 @@
   		"unevaluatedProperties": { "$dynamicRef": "#meta" }
   	};
   	unevaluated_default = {
-  		$schema: $schema$9,
-  		$id: $id$9,
+  		$schema: $schema$10,
+  		$id: $id$10,
   		$vocabulary: $vocabulary$5,
   		$dynamicAnchor: $dynamicAnchor$5,
   		title: title$5,
@@ -6676,18 +6676,18 @@
   }));
   var content_exports = /* @__PURE__ */ __exportAll({
   	$dynamicAnchor: () => $dynamicAnchor$4,
-  	$id: () => $id$8,
-  	$schema: () => $schema$8,
+  	$id: () => $id$9,
+  	$schema: () => $schema$9,
   	$vocabulary: () => $vocabulary$4,
   	default: () => content_default,
   	properties: () => properties$6,
   	title: () => title$4,
   	type: () => type$6
   });
-  var $schema$8, $id$8, $vocabulary$4, $dynamicAnchor$4, title$4, type$6, properties$6, content_default;
+  var $schema$9, $id$9, $vocabulary$4, $dynamicAnchor$4, title$4, type$6, properties$6, content_default;
   var init_content = __esmMin((() => {
-  	$schema$8 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$8 = "https://json-schema.org/draft/2020-12/meta/content";
+  	$schema$9 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$9 = "https://json-schema.org/draft/2020-12/meta/content";
   	$vocabulary$4 = { "https://json-schema.org/draft/2020-12/vocab/content": true };
   	$dynamicAnchor$4 = "meta";
   	title$4 = "Content vocabulary meta-schema";
@@ -6698,8 +6698,8 @@
   		"contentSchema": { "$dynamicRef": "#meta" }
   	};
   	content_default = {
-  		$schema: $schema$8,
-  		$id: $id$8,
+  		$schema: $schema$9,
+  		$id: $id$9,
   		$vocabulary: $vocabulary$4,
   		$dynamicAnchor: $dynamicAnchor$4,
   		title: title$4,
@@ -6708,20 +6708,20 @@
   	};
   }));
   var core_exports = /* @__PURE__ */ __exportAll({
-  	$defs: () => $defs$1,
+  	$defs: () => $defs$2,
   	$dynamicAnchor: () => $dynamicAnchor$3,
-  	$id: () => $id$7,
-  	$schema: () => $schema$7,
+  	$id: () => $id$8,
+  	$schema: () => $schema$8,
   	$vocabulary: () => $vocabulary$3,
   	default: () => core_default,
   	properties: () => properties$5,
   	title: () => title$3,
   	type: () => type$5
   });
-  var $schema$7, $id$7, $vocabulary$3, $dynamicAnchor$3, title$3, type$5, properties$5, $defs$1, core_default;
+  var $schema$8, $id$8, $vocabulary$3, $dynamicAnchor$3, title$3, type$5, properties$5, $defs$2, core_default;
   var init_core = __esmMin((() => {
-  	$schema$7 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$7 = "https://json-schema.org/draft/2020-12/meta/core";
+  	$schema$8 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$8 = "https://json-schema.org/draft/2020-12/meta/core";
   	$vocabulary$3 = { "https://json-schema.org/draft/2020-12/vocab/core": true };
   	$dynamicAnchor$3 = "meta";
   	title$3 = "Core vocabulary meta-schema";
@@ -6748,7 +6748,7 @@
   			"additionalProperties": { "$dynamicRef": "#meta" }
   		}
   	};
-  	$defs$1 = {
+  	$defs$2 = {
   		"anchorString": {
   			"type": "string",
   			"pattern": "^[A-Za-z_][-A-Za-z0-9._]*$"
@@ -6763,38 +6763,38 @@
   		}
   	};
   	core_default = {
-  		$schema: $schema$7,
-  		$id: $id$7,
+  		$schema: $schema$8,
+  		$id: $id$8,
   		$vocabulary: $vocabulary$3,
   		$dynamicAnchor: $dynamicAnchor$3,
   		title: title$3,
   		type: type$5,
   		properties: properties$5,
-  		$defs: $defs$1
+  		$defs: $defs$2
   	};
   }));
   var format_annotation_exports = /* @__PURE__ */ __exportAll({
   	$dynamicAnchor: () => $dynamicAnchor$2,
-  	$id: () => $id$6,
-  	$schema: () => $schema$6,
+  	$id: () => $id$7,
+  	$schema: () => $schema$7,
   	$vocabulary: () => $vocabulary$2,
   	default: () => format_annotation_default,
   	properties: () => properties$4,
   	title: () => title$2,
   	type: () => type$4
   });
-  var $schema$6, $id$6, $vocabulary$2, $dynamicAnchor$2, title$2, type$4, properties$4, format_annotation_default;
+  var $schema$7, $id$7, $vocabulary$2, $dynamicAnchor$2, title$2, type$4, properties$4, format_annotation_default;
   var init_format_annotation = __esmMin((() => {
-  	$schema$6 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$6 = "https://json-schema.org/draft/2020-12/meta/format-annotation";
+  	$schema$7 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$7 = "https://json-schema.org/draft/2020-12/meta/format-annotation";
   	$vocabulary$2 = { "https://json-schema.org/draft/2020-12/vocab/format-annotation": true };
   	$dynamicAnchor$2 = "meta";
   	title$2 = "Format vocabulary meta-schema for annotation results";
   	type$4 = ["object", "boolean"];
   	properties$4 = { "format": { "type": "string" } };
   	format_annotation_default = {
-  		$schema: $schema$6,
-  		$id: $id$6,
+  		$schema: $schema$7,
+  		$id: $id$7,
   		$vocabulary: $vocabulary$2,
   		$dynamicAnchor: $dynamicAnchor$2,
   		title: title$2,
@@ -6804,18 +6804,18 @@
   }));
   var meta_data_exports = /* @__PURE__ */ __exportAll({
   	$dynamicAnchor: () => $dynamicAnchor$1,
-  	$id: () => $id$5,
-  	$schema: () => $schema$5,
+  	$id: () => $id$6,
+  	$schema: () => $schema$6,
   	$vocabulary: () => $vocabulary$1,
   	default: () => meta_data_default,
   	properties: () => properties$3,
   	title: () => title$1,
   	type: () => type$3
   });
-  var $schema$5, $id$5, $vocabulary$1, $dynamicAnchor$1, title$1, type$3, properties$3, meta_data_default;
+  var $schema$6, $id$6, $vocabulary$1, $dynamicAnchor$1, title$1, type$3, properties$3, meta_data_default;
   var init_meta_data = __esmMin((() => {
-  	$schema$5 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$5 = "https://json-schema.org/draft/2020-12/meta/meta-data";
+  	$schema$6 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$6 = "https://json-schema.org/draft/2020-12/meta/meta-data";
   	$vocabulary$1 = { "https://json-schema.org/draft/2020-12/vocab/meta-data": true };
   	$dynamicAnchor$1 = "meta";
   	title$1 = "Meta-data vocabulary meta-schema";
@@ -6842,8 +6842,8 @@
   		}
   	};
   	meta_data_default = {
-  		$schema: $schema$5,
-  		$id: $id$5,
+  		$schema: $schema$6,
+  		$id: $id$6,
   		$vocabulary: $vocabulary$1,
   		$dynamicAnchor: $dynamicAnchor$1,
   		title: title$1,
@@ -6852,20 +6852,20 @@
   	};
   }));
   var validation_exports = /* @__PURE__ */ __exportAll({
-  	$defs: () => $defs,
+  	$defs: () => $defs$1,
   	$dynamicAnchor: () => $dynamicAnchor,
-  	$id: () => $id$4,
-  	$schema: () => $schema$4,
+  	$id: () => $id$5,
+  	$schema: () => $schema$5,
   	$vocabulary: () => $vocabulary,
   	default: () => validation_default,
   	properties: () => properties$2,
   	title: () => title,
   	type: () => type$2
   });
-  var $schema$4, $id$4, $vocabulary, $dynamicAnchor, title, type$2, properties$2, $defs, validation_default;
+  var $schema$5, $id$5, $vocabulary, $dynamicAnchor, title, type$2, properties$2, $defs$1, validation_default;
   var init_validation = __esmMin((() => {
-  	$schema$4 = "https://json-schema.org/draft/2020-12/schema";
-  	$id$4 = "https://json-schema.org/draft/2020-12/meta/validation";
+  	$schema$5 = "https://json-schema.org/draft/2020-12/schema";
+  	$id$5 = "https://json-schema.org/draft/2020-12/meta/validation";
   	$vocabulary = { "https://json-schema.org/draft/2020-12/vocab/validation": true };
   	$dynamicAnchor = "meta";
   	title = "Validation vocabulary meta-schema";
@@ -6915,7 +6915,7 @@
   			"additionalProperties": { "$ref": "#/$defs/stringArray" }
   		}
   	};
-  	$defs = {
+  	$defs$1 = {
   		"nonNegativeInteger": {
   			"type": "integer",
   			"minimum": 0
@@ -6941,14 +6941,14 @@
   		}
   	};
   	validation_default = {
-  		$schema: $schema$4,
-  		$id: $id$4,
+  		$schema: $schema$5,
+  		$id: $id$5,
   		$vocabulary,
   		$dynamicAnchor,
   		title,
   		type: type$2,
   		properties: properties$2,
-  		$defs
+  		$defs: $defs$1
   	};
   }));
   var require_json_schema_2020_12 = /* @__PURE__ */ __commonJSMin(((exports) => {
@@ -7861,6 +7861,482 @@
   		return ownerFailure(scope, "owner-result-invalid");
   	}
   }
+  var numberToken = /^-?(?:0|[1-9][0-9]*)(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?$/u;
+  var invalidNumber = Object.freeze({
+  	kind: "invalid",
+  	code: "fixed-number-input-invalid"
+  });
+  /**
+  * Parse a NEW numeric draft according to NP-finite-new-input-v1.
+  * Never apply this to opening/no-op raw values or use it as an owner validator.
+  * Keep the validated token so negative zero, precision and exponent spelling survive.
+  */
+  function parseFixedNumberInput(input) {
+  	if (typeof input === "number") {
+  		if (!Number.isFinite(input)) return invalidNumber;
+  		return Object.freeze({
+  			kind: "valid",
+  			token: Object.is(input, -0) ? "-0" : String(input),
+  			value: input
+  		});
+  	}
+  	if (typeof input !== "string") return invalidNumber;
+  	const token = input.trim();
+  	if (!numberToken.test(token)) return invalidNumber;
+  	const value = Number(token);
+  	return Number.isFinite(value) ? Object.freeze({
+  		kind: "valid",
+  		token,
+  		value
+  	}) : invalidNumber;
+  }
+  var block_editor_fixed_inputs_schema_default = {
+  	$schema: "https://json-schema.org/draft/2020-12/schema",
+  	$id: "https://kubohiroya.github.io/turbowarp-cloudflare-worker/schemas/block-editor-fixed-inputs.schema.json",
+  	$defs: {
+  		"createHandlerIr": {
+  			"type": "object",
+  			"properties": { "METHOD": {
+  				"type": "string",
+  				"enum": [
+  					"GET",
+  					"POST",
+  					"PUT",
+  					"PATCH",
+  					"DELETE",
+  					"OPTIONS",
+  					"HEAD"
+  				]
+  			} },
+  			"required": ["METHOD"],
+  			"additionalProperties": true
+  		},
+  		"createProtectedRouteIr": {
+  			"type": "object",
+  			"properties": {
+  				"METHOD": {
+  					"type": "string",
+  					"enum": [
+  						"GET",
+  						"POST",
+  						"PUT",
+  						"PATCH",
+  						"DELETE",
+  						"OPTIONS",
+  						"HEAD",
+  						"*"
+  					]
+  				},
+  				"ON_UNAUTHENTICATED": { "$ref": "https://kubohiroya.github.io/turbowarp-http-server-cloudflare/schemas/protected-routes.schema.json#/anyOf/0/properties/onUnauthenticated" }
+  			},
+  			"required": ["METHOD", "ON_UNAUTHENTICATED"],
+  			"additionalProperties": true
+  		},
+  		"createBearerRouteIr": {
+  			"type": "object",
+  			"properties": { "METHOD": {
+  				"type": "string",
+  				"enum": [
+  					"GET",
+  					"POST",
+  					"PUT",
+  					"PATCH",
+  					"DELETE",
+  					"OPTIONS",
+  					"HEAD",
+  					"*"
+  				]
+  			} },
+  			"required": ["METHOD"],
+  			"additionalProperties": true
+  		},
+  		"createBearerRoleRouteIr": {
+  			"type": "object",
+  			"properties": { "METHOD": {
+  				"type": "string",
+  				"enum": [
+  					"GET",
+  					"POST",
+  					"PUT",
+  					"PATCH",
+  					"DELETE",
+  					"OPTIONS",
+  					"HEAD",
+  					"*"
+  				]
+  			} },
+  			"required": ["METHOD"],
+  			"additionalProperties": true
+  		},
+  		"createBearerScopeRouteIr": {
+  			"type": "object",
+  			"properties": { "METHOD": {
+  				"type": "string",
+  				"enum": [
+  					"GET",
+  					"POST",
+  					"PUT",
+  					"PATCH",
+  					"DELETE",
+  					"OPTIONS",
+  					"HEAD",
+  					"*"
+  				]
+  			} },
+  			"required": ["METHOD"],
+  			"additionalProperties": true
+  		}
+  	}
+  };
+  var protected_routes_schema_default = {
+  	$schema: "https://json-schema.org/draft/2020-12/schema",
+  	$id: "https://kubohiroya.github.io/turbowarp-http-server-cloudflare/schemas/protected-routes.schema.json",
+  	anyOf: [{
+  		"type": "object",
+  		"required": [
+  			"method",
+  			"path",
+  			"onUnauthenticated"
+  		],
+  		"properties": {
+  			"method": {
+  				"type": "string",
+  				"minLength": 1
+  			},
+  			"path": {
+  				"type": "string",
+  				"minLength": 1
+  			},
+  			"onUnauthenticated": { "enum": [
+  				"redirect-login",
+  				"json-401",
+  				"forbid-403"
+  			] },
+  			"auth": { "enum": ["session", "bearer-jwt"] },
+  			"requiredRole": {
+  				"type": "string",
+  				"minLength": 1
+  			},
+  			"requiredScopes": {
+  				"type": "array",
+  				"items": {
+  					"type": "string",
+  					"minLength": 1
+  				}
+  			}
+  		}
+  	}, {
+  		"type": "array",
+  		"items": {
+  			"type": "object",
+  			"required": [
+  				"method",
+  				"path",
+  				"onUnauthenticated"
+  			],
+  			"properties": {
+  				"method": {
+  					"type": "string",
+  					"minLength": 1
+  				},
+  				"path": {
+  					"type": "string",
+  					"minLength": 1
+  				},
+  				"onUnauthenticated": { "enum": [
+  					"redirect-login",
+  					"json-401",
+  					"forbid-403"
+  				] },
+  				"auth": { "enum": ["session", "bearer-jwt"] },
+  				"requiredRole": {
+  					"type": "string",
+  					"minLength": 1
+  				},
+  				"requiredScopes": {
+  					"type": "array",
+  					"items": {
+  						"type": "string",
+  						"minLength": 1
+  					}
+  				}
+  			}
+  		}
+  	}]
+  };
+  var repository$1 = "turbowarp-cloudflare-worker";
+  /** The owner JSON document is canonical; this selects a primitive field fragment. */
+  function fixedInputBundle(opcode, argument) {
+  	const source = {
+  		repository: repository$1,
+  		path: "schemas/block-editor-fixed-inputs.schema.json",
+  		symbol: `#/$defs/${opcode}/properties/${argument}`
+  	};
+  	const blocks = block_editor_fixed_inputs_schema_default.$defs;
+  	return {
+  		identity: {
+  			ownerId: repository$1,
+  			contractId: opcode,
+  			revision: "fixed-inputs-v1",
+  			variantId: argument
+  		},
+  		dialect: "2020-12",
+  		root: {
+  			retrievalUri: block_editor_fixed_inputs_schema_default.$id,
+  			document: blocks[opcode].properties[argument],
+  			artifact: {
+  				role: "canonical-schema",
+  				source
+  			}
+  		},
+  		resources: [{
+  			retrievalUri: protected_routes_schema_default.$id,
+  			document: protected_routes_schema_default,
+  			artifact: {
+  				role: "canonical-schema",
+  				source: {
+  					repository: repository$1,
+  					path: "schemas/protected-routes.schema.json"
+  				}
+  			}
+  		}],
+  		provenance: {
+  			canonicalSources: [
+  				source,
+  				{
+  					repository: repository$1,
+  					path: "schemas/protected-routes.schema.json"
+  				},
+  				{
+  					repository: repository$1,
+  					path: "src/extension.ts",
+  					symbol: opcode
+  				}
+  			],
+  			generatedFiles: [],
+  			referenceSchemas: [],
+  			generationSources: []
+  		}
+  	};
+  }
+  var extensionId = "kubohiroyacloudflareworker";
+  var repository = "turbowarp-cloudflare-worker";
+  var fields = [
+  	{
+  		"opcode": "createHandlerIr",
+  		"argument": "METHOD",
+  		"control": "enum",
+  		"choices": [
+  			"GET",
+  			"POST",
+  			"PUT",
+  			"PATCH",
+  			"DELETE",
+  			"OPTIONS",
+  			"HEAD"
+  		],
+  		"normalization": "method",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	},
+  	{
+  		"opcode": "createProtectedRouteIr",
+  		"argument": "METHOD",
+  		"control": "enum",
+  		"choices": [
+  			"GET",
+  			"POST",
+  			"PUT",
+  			"PATCH",
+  			"DELETE",
+  			"OPTIONS",
+  			"HEAD",
+  			"*"
+  		],
+  		"normalization": "method",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	},
+  	{
+  		"opcode": "createProtectedRouteIr",
+  		"argument": "ON_UNAUTHENTICATED",
+  		"control": "enum",
+  		"choices": [
+  			"redirect-login",
+  			"json-401",
+  			"forbid-403"
+  		],
+  		"normalization": "trim",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	},
+  	{
+  		"opcode": "createBearerRouteIr",
+  		"argument": "METHOD",
+  		"control": "enum",
+  		"choices": [
+  			"GET",
+  			"POST",
+  			"PUT",
+  			"PATCH",
+  			"DELETE",
+  			"OPTIONS",
+  			"HEAD",
+  			"*"
+  		],
+  		"normalization": "method",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	},
+  	{
+  		"opcode": "createBearerRoleRouteIr",
+  		"argument": "METHOD",
+  		"control": "enum",
+  		"choices": [
+  			"GET",
+  			"POST",
+  			"PUT",
+  			"PATCH",
+  			"DELETE",
+  			"OPTIONS",
+  			"HEAD",
+  			"*"
+  		],
+  		"normalization": "method",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	},
+  	{
+  		"opcode": "createBearerScopeRouteIr",
+  		"argument": "METHOD",
+  		"control": "enum",
+  		"choices": [
+  			"GET",
+  			"POST",
+  			"PUT",
+  			"PATCH",
+  			"DELETE",
+  			"OPTIONS",
+  			"HEAD",
+  			"*"
+  		],
+  		"normalization": "method",
+  		"shape": "text.TEXT",
+  		"maxBytes": false
+  	}
+  ];
+  function literalString(value) {
+  	if (typeof value !== "string") throw new TypeError("Expected a string literal.");
+  	return value;
+  }
+  /** Legacy nonempty finite aliases are projections; opening never creates a write. */
+  function existingFixedNumber(value) {
+  	if (typeof value !== "string" && typeof value !== "number" || typeof value === "string" && value.trim() === "") throw new TypeError("Unavailable numeric projection.");
+  	const number = Number(value);
+  	if (!Number.isFinite(number)) throw new TypeError("Unavailable numeric projection.");
+  	return number;
+  }
+  function normalizeChoice(field, raw) {
+  	if (field.normalization === "lowercase") return raw.toLowerCase();
+  	if (field.normalization === "method") return raw.trim().toUpperCase();
+  	if (field.normalization === "trim") return raw.trim();
+  	if (field.normalization === "parse-format") {
+  		const lower = raw.trim().toLowerCase();
+  		return lower === "json" ? "JSON" : lower === "yaml" ? "YAML" : lower === "auto" ? "auto" : raw;
+  	}
+  	return raw;
+  }
+  function binding(field) {
+  	return {
+  		argument: field.argument,
+  		schemaBundle: fixedInputBundle(field.opcode, field.argument),
+  		control: {
+  			kind: field.control,
+  			...field.control === "enum" ? { choices: field.choices.map((value) => ({ value })) } : {}
+  		},
+  		read(value) {
+  			return field.control === "number" ? existingFixedNumber(value) : normalizeChoice(field, literalString(value));
+  		},
+  		encode(value) {
+  			if (field.control === "number") {
+  				const parsed = parseFixedNumberInput(value);
+  				if (parsed.kind !== "valid") throw new TypeError("Invalid new numeric input.");
+  				return parsed.token;
+  			}
+  			const raw = literalString(value), normalized = normalizeChoice(field, raw);
+  			if (!field.choices.includes(normalized)) throw new TypeError("Unsupported fixed choice.");
+  			return field.shape === "menu-shadow" || field.shape === "direct-field-dropdown" ? normalized : raw;
+  		},
+  		validateCandidate(value) {
+  			try {
+  				if (field.control === "number") {
+  					const number = existingFixedNumber(value);
+  					if (field.maxBytes && (!Number.isSafeInteger(Math.trunc(number)) || Math.trunc(number) < 1)) return [{ message: "Invalid named body size." }];
+  					return [];
+  				}
+  				return field.choices.includes(normalizeChoice(field, literalString(value))) ? [] : [{ message: "Unsupported fixed choice." }];
+  			} catch {
+  				return [{ message: "Invalid fixed input." }];
+  			}
+  		}
+  	};
+  }
+  var fixedInputEditors = [...new Set(fields.map((f) => f.opcode))].map((opcode) => ({
+  	apiVersion: 1,
+  	extensionId,
+  	editorId: `${opcode}-fixed-inputs`,
+  	opcodes: [`${extensionId}_${opcode}`],
+  	contractId: `${repository}/${opcode}`,
+  	contractRevision: "fixed-inputs-v1",
+  	bindings: fields.filter((field) => field.opcode === opcode).map(binding),
+  	validationContext: () => ({
+  		consumerId: repository,
+  		nowMs: 0,
+  		settings: null
+  	})
+  }));
+  /** Registration follows the advertised opcode membership and the optional host capability. */
+  function fixedInputRegistration(scratch) {
+  	const host = scratch ?? {};
+  	let active;
+  	let membership = "";
+  	const removers = [];
+  	let stopped = false;
+  	const clear = () => {
+  		host.vm?.runtime?.off?.("RUNTIME_DISPOSED", shutdown);
+  		for (const remove of removers.splice(0).reverse()) remove();
+  		active = void 0;
+  		membership = "";
+  	};
+  	const shutdown = () => {
+  		stopped = true;
+  		clear();
+  	};
+  	return {
+  		ensure(visibleOpcodes) {
+  			const api = host.gui?.blockEditors;
+  			const definitions = fixedInputEditors.filter((definition) => definition.opcodes.every((opcode) => visibleOpcodes.includes(opcode)));
+  			const key = definitions.map((definition) => definition.editorId).join(",");
+  			if (stopped || api === active && membership === key) return;
+  			clear();
+  			if (api?.apiVersion !== 1 || typeof api.registerFixedInputEditor !== "function" || !definitions.length) return;
+  			try {
+  				for (const definition of definitions) {
+  					const remove = api.registerFixedInputEditor.call(api, definition);
+  					if (typeof remove !== "function") throw new TypeError("Invalid fixed input cleanup.");
+  					removers.push(remove);
+  				}
+  				active = api;
+  				membership = key;
+  				host.vm?.runtime?.on?.("RUNTIME_DISPOSED", shutdown);
+  			} catch (error) {
+  				clear();
+  				throw error;
+  			}
+  		},
+  		dispose: shutdown
+  	};
+  }
   function canonicalBundle(ownerId, contractId, document, ownerSource) {
   	const source = {
   		repository: ownerId,
@@ -8172,82 +8648,6 @@
   			}
   		}
   	}
-  };
-  var protected_routes_schema_default = {
-  	$schema: "https://json-schema.org/draft/2020-12/schema",
-  	$id: "https://kubohiroya.github.io/turbowarp-http-server-cloudflare/schemas/protected-routes.schema.json",
-  	anyOf: [{
-  		"type": "object",
-  		"required": [
-  			"method",
-  			"path",
-  			"onUnauthenticated"
-  		],
-  		"properties": {
-  			"method": {
-  				"type": "string",
-  				"minLength": 1
-  			},
-  			"path": {
-  				"type": "string",
-  				"minLength": 1
-  			},
-  			"onUnauthenticated": { "enum": [
-  				"redirect-login",
-  				"json-401",
-  				"forbid-403"
-  			] },
-  			"auth": { "enum": ["session", "bearer-jwt"] },
-  			"requiredRole": {
-  				"type": "string",
-  				"minLength": 1
-  			},
-  			"requiredScopes": {
-  				"type": "array",
-  				"items": {
-  					"type": "string",
-  					"minLength": 1
-  				}
-  			}
-  		}
-  	}, {
-  		"type": "array",
-  		"items": {
-  			"type": "object",
-  			"required": [
-  				"method",
-  				"path",
-  				"onUnauthenticated"
-  			],
-  			"properties": {
-  				"method": {
-  					"type": "string",
-  					"minLength": 1
-  				},
-  				"path": {
-  					"type": "string",
-  					"minLength": 1
-  				},
-  				"onUnauthenticated": { "enum": [
-  					"redirect-login",
-  					"json-401",
-  					"forbid-403"
-  				] },
-  				"auth": { "enum": ["session", "bearer-jwt"] },
-  				"requiredRole": {
-  					"type": "string",
-  					"minLength": 1
-  				},
-  				"requiredScopes": {
-  					"type": "array",
-  					"items": {
-  						"type": "string",
-  						"minLength": 1
-  					}
-  				}
-  			}
-  		}
-  	}]
   };
   var auth_ir_schema_default = {
   	$schema: "https://json-schema.org/draft/2020-12/schema",
@@ -9482,12 +9882,15 @@
   var authBlockIconUri = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4=";
   var CloudflareExtension = class {
   	constructor() {
+  		this.fixedInputs = fixedInputRegistration(typeof Scratch === "undefined" ? void 0 : Scratch);
   		this.unregisterSourceEditors = registerSourceEditors(Scratch, sourceEditorDefinitions);
   	}
   	dispose() {
+  		this.fixedInputs.dispose();
   		this.unregisterSourceEditors();
   	}
   	getInfo() {
+  		this.fixedInputs.ensure(paletteDefinitions.flatMap((block) => "opcode" in block ? [`${extensionConfig.id}_${block.opcode}`] : []));
   		return {
   			id: extensionConfig.id,
   			name: Scratch.translate(block_definitions_default.extensionName),

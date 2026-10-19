@@ -49,3 +49,5 @@ See [docs/architecture.ja.md](docs/architecture.ja.md) for the Japanese architec
 ## License
 
 [Mozilla Public License 2.0](LICENSE) (SPDX: `MPL-2.0`).
+
+固定入力の編集範囲・互換性・切戻しについては [固定入力の編集](docs/fixed-input-editors.ja.md) を参照してください。
