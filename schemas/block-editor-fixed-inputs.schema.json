@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kubohiroya.github.io/turbowarp-cloudflare-worker/schemas/block-editor-fixed-inputs.schema.json",
+  "$defs": {
+    "createHandlerIr": {
+      "type": "object",
+      "properties": {
+        "METHOD": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+            "HEAD"
+          ]
+        }
+      },
+      "required": [
+        "METHOD"
+      ],
+      "additionalProperties": true
+    },
+    "createProtectedRouteIr": {
+      "type": "object",
+      "properties": {
+        "METHOD": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+            "HEAD",
+            "*"
+          ]
+        },
+        "ON_UNAUTHENTICATED": {
+          "$ref": "https://kubohiroya.github.io/turbowarp-http-server-cloudflare/schemas/protected-routes.schema.json#/anyOf/0/properties/onUnauthenticated"
+        }
+      },
+      "required": [
+        "METHOD",
+        "ON_UNAUTHENTICATED"
+      ],
+      "additionalProperties": true
+    },
+    "createBearerRouteIr": {
+      "type": "object",
+      "properties": {
+        "METHOD": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+            "HEAD",
+            "*"
+          ]
+        }
+      },
+      "required": [
+        "METHOD"
+      ],
+      "additionalProperties": true
+    },
+    "createBearerRoleRouteIr": {
+      "type": "object",
+      "properties": {
+        "METHOD": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+            "HEAD",
+            "*"
+          ]
+        }
+      },
+      "required": [
+        "METHOD"
+      ],
+      "additionalProperties": true
+    },
+    "createBearerScopeRouteIr": {
+      "type": "object",
+      "properties": {
+        "METHOD": {
+          "type": "string",
+          "enum": [
+            "GET",
+            "POST",
+            "PUT",
+            "PATCH",
+            "DELETE",
+            "OPTIONS",
+            "HEAD",
+            "*"
+          ]
+        }
+      },
+      "required": [
+        "METHOD"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

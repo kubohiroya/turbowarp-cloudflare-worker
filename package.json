@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "hono": "^4.10.7",
-    "@kubohiroya/turbowarp-extension-data-editor": "git+https://github.com/kubohiroya/turbowarp-extension-data-editor.git#76fa1d50a3c188082ceef723ea018a9d8769ea6e"
+    "@kubohiroya/turbowarp-extension-data-editor": "github:kubohiroya/turbowarp-extension-data-editor#485f0e550e622235624b5e9176820161aeeba252"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260826.1",

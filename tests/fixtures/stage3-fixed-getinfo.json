@@ -1,0 +1,172 @@
+[
+  {
+    "id": "native-default",
+    "values": {},
+    "getInfo": {
+      "id": "kubohiroyacloudflareworker",
+      "name": "TurboWarp HTTP Server Cloudflare",
+      "docsURI": "https://kubohiroya.github.io/turbowarp-cloudflare-worker/",
+      "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNCIgeT0iOCIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE0IiByeD0iMyIgZmlsbD0iIzRDOTdGRiIvPjxyZWN0IHg9IjI2IiB5PSI4IiB3aWR0aD0iMTgiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSIjNTlDMDU5Ii8+PHJlY3QgeD0iMTUiIHk9IjI2IiB3aWR0aD0iMTgiIGhlaWdodD0iMTQiIHJ4PSIzIiBmaWxsPSIjRkZBQjE5Ii8+PC9zdmc+",
+      "blocks": [
+        {
+          "opcode": "createHandlerIr",
+          "blockType": "reporter",
+          "text": "Cloudflare handler [METHOD] [PATH] returns [BODY]",
+          "arguments": {
+            "METHOD": {
+              "type": "string",
+              "defaultValue": "GET"
+            },
+            "PATH": {
+              "type": "string",
+              "defaultValue": "/hello"
+            },
+            "BODY": {
+              "type": "string",
+              "defaultValue": "Hello from TurboWarp"
+            }
+          }
+        },
+        {
+          "opcode": "createWorkerIr",
+          "blockType": "reporter",
+          "text": "Cloudflare Worker [NAME] with handlers JSON [HANDLERS]",
+          "arguments": {
+            "NAME": {
+              "type": "string",
+              "defaultValue": "tw-http-app"
+            },
+            "HANDLERS": {
+              "type": "string",
+              "defaultValue": "[]"
+            }
+          }
+        },
+        {
+          "opcode": "generateFilesJson",
+          "blockType": "reporter",
+          "text": "generated Cloudflare files JSON from IR [IR]",
+          "arguments": {
+            "IR": {
+              "type": "string",
+              "defaultValue": "{\"name\":\"tw-http-app\",\"handlers\":[]}"
+            }
+          }
+        },
+        "---",
+        {
+          "opcode": "createProtectedRouteIr",
+          "blockType": "reporter",
+          "text": "protected route [METHOD] [PATH] when unauthenticated [ON_UNAUTHENTICATED]",
+          "arguments": {
+            "METHOD": {
+              "type": "string",
+              "defaultValue": "GET"
+            },
+            "PATH": {
+              "type": "string",
+              "defaultValue": "/private"
+            },
+            "ON_UNAUTHENTICATED": {
+              "type": "string",
+              "defaultValue": "redirect-login"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        },
+        {
+          "opcode": "createAuthIr",
+          "blockType": "reporter",
+          "text": "external OAuth/OIDC auth providers [PROVIDERS] protected routes JSON [PROTECTED_ROUTES]",
+          "arguments": {
+            "PROVIDERS": {
+              "type": "string",
+              "defaultValue": "google,github"
+            },
+            "PROTECTED_ROUTES": {
+              "type": "string",
+              "defaultValue": "[]"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        },
+        {
+          "opcode": "createBearerRouteIr",
+          "blockType": "reporter",
+          "text": "API route [METHOD] [PATH] requires bearer token",
+          "arguments": {
+            "METHOD": {
+              "type": "string",
+              "defaultValue": "GET"
+            },
+            "PATH": {
+              "type": "string",
+              "defaultValue": "/api/items"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        },
+        {
+          "opcode": "createBearerRoleRouteIr",
+          "blockType": "reporter",
+          "text": "API route [METHOD] [PATH] requires bearer role [ROLE]",
+          "arguments": {
+            "METHOD": {
+              "type": "string",
+              "defaultValue": "POST"
+            },
+            "PATH": {
+              "type": "string",
+              "defaultValue": "/api/admin"
+            },
+            "ROLE": {
+              "type": "string",
+              "defaultValue": "admin"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        },
+        {
+          "opcode": "createBearerScopeRouteIr",
+          "blockType": "reporter",
+          "text": "API route [METHOD] [PATH] requires bearer scope [SCOPE]",
+          "arguments": {
+            "METHOD": {
+              "type": "string",
+              "defaultValue": "POST"
+            },
+            "PATH": {
+              "type": "string",
+              "defaultValue": "/api/posts"
+            },
+            "SCOPE": {
+              "type": "string",
+              "defaultValue": "posts:write"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        },
+        {
+          "opcode": "createWorkerIrWithAuth",
+          "blockType": "reporter",
+          "text": "Cloudflare Worker [NAME] with handlers JSON [HANDLERS] and auth JSON [AUTH]",
+          "arguments": {
+            "NAME": {
+              "type": "string",
+              "defaultValue": "tw-http-app"
+            },
+            "HANDLERS": {
+              "type": "string",
+              "defaultValue": "[]"
+            },
+            "AUTH": {
+              "type": "string",
+              "defaultValue": "{\"mode\":\"external-oauth-oidc\",\"providers\":[\"google\"],\"protectedRoutes\":[]}"
+            }
+          },
+          "blockIconURI": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0OCA0OCI+PHJlY3QgeD0iNiIgeT0iMTgiIHdpZHRoPSIzNiIgaGVpZ2h0PSIyNCIgcng9IjQiIGZpbGw9IiNGNzk1MjEiLz48cGF0aCBkPSJNMTUgMTh2LTZjMC01IDQtOSA5LTlzOSA0IDkgOXY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMxRjI5MzciIHN0cm9rZS13aWR0aD0iNCIvPjxjaXJjbGUgY3g9IjI0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiMxRjI5MzciLz48L3N2Zz4="
+        }
+      ]
+    }
+  }
+]

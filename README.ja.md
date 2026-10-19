@@ -103,3 +103,5 @@ pnpm build
 ```
 
 詳しい設計は [docs/architecture.ja.md](docs/architecture.ja.md) を参照してください。
+
+固定入力の編集範囲・互換性・切戻しについては [固定入力の編集](docs/fixed-input-editors.ja.md) を参照してください。
