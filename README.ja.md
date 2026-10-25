@@ -1,5 +1,7 @@
 # turbowarp-cloudflare-worker
 
+<img src="assets/block-icon.svg" alt="" width="48" height="48">
+
 `@kubohiroya/turbowarp-cloudflare-worker` は、TurboWarp のブロックで表現した HTTP ハンドラ構成を Cloudflare Workers 向け TypeScript/Hono アプリへ変換するための初期実装です。
 
 このリポジトリは `turbowarp-http-server` 本体から分離した Cloudflare 連携パッケージです。本体はブロック側の HTTP サーバ表現とローカル実行を担い、このパッケージは Cloudflare Workers へ持ち出すための IR、コード生成、CLI、将来的なデプロイ補助ブロックを担います。

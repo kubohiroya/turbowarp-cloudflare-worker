@@ -1,5 +1,7 @@
 # turbowarp-cloudflare-worker
 
+<img src="assets/block-icon.svg" alt="" width="48" height="48">
+
 [日本語](README.ja.md)
 
 `@kubohiroya/turbowarp-cloudflare-worker` is the Cloudflare integration package for the `turbowarp-http-server` family. It defines a shared IR, generates Cloudflare Workers TypeScript/Hono files, exposes a small CLI, and provides minimal TurboWarp blocks for IR creation.
