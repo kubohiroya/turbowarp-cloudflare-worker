@@ -65,12 +65,12 @@
   },
   "dependencies": {
     "hono": "^4.10.7",
-    "@kubohiroya/turbowarp-extension-data-editor": "0.2.1"
+    "@kubohiroya/turbowarp-extension-data-editor": "^0.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260826.1",
     "@eslint/js": "^9.39.5",
-    "@kubohiroya/vite-plugin-turbowarp-extension": "0.6.1",
+    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.6.1",
     "@types/node": "^24.13.3",
     "eslint": "^9.39.5",
     "typescript": "^5.9.3",
