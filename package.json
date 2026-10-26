@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-cloudflare-worker",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Cloudflare Workers TypeScript generator and TurboWarp extension bridge for turbowarp-http-server.",
   "author": "Hiroya Kubo <hiroya@cuc.ac.jp>",
   "license": "MPL-2.0",
@@ -66,12 +66,12 @@
   },
   "dependencies": {
     "hono": "^4.10.7",
-    "@kubohiroya/turbowarp-extension-data-editor": "^0.3.3"
+    "@kubohiroya/turbowarp-extension-data-editor": "^0.3.4"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260826.1",
     "@eslint/js": "^9.39.5",
-    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.6.1",
+    "@kubohiroya/vite-plugin-turbowarp-extension": "^0.8.0",
     "@types/node": "^24.13.3",
     "eslint": "^9.39.5",
     "typescript": "^5.9.3",
@@ -80,9 +80,9 @@
     "vitest": "^4.1.10",
     "react-dom": "18.3.1"
   },
-  "gitHead": "fe4713e7f916ec0c1de1ee10873be635200582b7",
+  "gitHead": "dce435c39e37f647d0ab7052d3830fac9330f7ad",
   "x-turbowarp-source": {
-    "revision": "fe4713e7f916ec0c1de1ee10873be635200582b7",
+    "revision": "dce435c39e37f647d0ab7052d3830fac9330f7ad",
     "revisionRole": "base-commit",
     "sourceState": "local-release-overlay"
   }
