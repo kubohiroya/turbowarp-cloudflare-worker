@@ -8,6 +8,16 @@ English | [日本語](README.ja.md)
 
 The MVP target is Cloudflare Workers + TypeScript + Hono. Authentication is expected to use external OAuth/OIDC providers such as Google, Microsoft, or GitHub. Apple sign-in is intentionally out of scope for the MVP. Persistent storage is represented through Cloudflare D1, KV, R2, and Durable Objects bindings.
 
+## Runnable sample
+
+[**Open the demo in TurboWarp Editor**](https://turbowarp.org/editor?project_url=https%3A%2F%2Fkubohiroya.github.io%2Fturbowarp-cloudflare-worker%2Fsamples%2Fgenerate-hello-worker.sb3) · [Download the SB3](https://kubohiroya.github.io/turbowarp-cloudflare-worker/samples/generate-hello-worker.sb3)
+
+Choose **Allow** and click the green flag.
+Both generated-route and response checks are true. The full Worker files JSON is stored in a hidden variable.
+
+Editable sources and expected results: [`samples/README.md`](samples/README.md).
+Run `pnpm run samples:build` after source/bundle changes and `pnpm run samples:check` before committing.
+
 ## MVP Scope
 
 - Shared `CloudflareWorkerIr` types for blocks and CLI.
