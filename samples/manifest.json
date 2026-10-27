@@ -1,0 +1,37 @@
+{
+  "baseURL": "https://kubohiroya.github.io/turbowarp-cloudflare-worker/",
+  "extension": {
+    "id": "kubohiroyacloudflareworker",
+    "bundle": "dist/turbowarp-cloudflare-worker.js",
+    "unsandboxed": false
+  },
+  "samples": [
+    {
+      "name": "generate-hello-worker",
+      "title": "Generate a hello Worker",
+      "checks": [
+        {
+          "variable": "files",
+          "contains": "Hello from TurboWarp"
+        },
+        {
+          "variable": "files",
+          "contains": "/hello"
+        },
+        {
+          "variable": "files",
+          "contains": "src/index.ts"
+        },
+        {
+          "variable": "route-found",
+          "equals": true
+        },
+        {
+          "variable": "response-found",
+          "equals": true
+        }
+      ],
+      "instructions": "Generated Worker files contain a GET /hello text response."
+    }
+  ]
+}

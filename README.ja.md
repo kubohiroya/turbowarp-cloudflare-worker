@@ -8,6 +8,15 @@
 
 このリポジトリは `turbowarp-http-server` 本体から分離した Cloudflare 連携パッケージです。本体はブロック側の HTTP サーバ表現とローカル実行を担い、このパッケージは Cloudflare Workers へ持ち出すための IR、コード生成、CLI、将来的なデプロイ補助ブロックを担います。
 
+## 実行できるサンプル
+
+[**TurboWarp Editorでデモを開く**](https://turbowarp.org/editor?project_url=https%3A%2F%2Fkubohiroya.github.io%2Fturbowarp-cloudflare-worker%2Fsamples%2Fgenerate-hello-worker.sb3) · [SB3をダウンロード](https://kubohiroya.github.io/turbowarp-cloudflare-worker/samples/generate-hello-worker.sb3)
+
+**Allow**で読み込みを許可し、緑の旗を押します。
+`createHandlerIr`・`createWorkerIr`・`generateFilesJson`でGET /hello用ファイルを生成。サンプルの元データと期待結果は[`samples/README.md`](samples/README.md)に記載しています。
+
+`pnpm run samples:build`でSB3を再生成し、`pnpm run samples:check`で更新漏れと生成処理を確認します。
+
 ## MVP 範囲
 
 - Cloudflare Workers + TypeScript + Hono を生成対象にする。
