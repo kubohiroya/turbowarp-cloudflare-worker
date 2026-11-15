@@ -81,8 +81,10 @@ describe('optional host registration', () => {
     lifecycle.ensure([]); expect(cleaned).toHaveLength(fixedInputEditors.length); expect(events.size).toBe(0);
     lifecycle.ensure(opcodes); host.gui.blockEditors = {...api, registerFixedInputEditor: vi.fn(() => () => {cleaned.push(2);})};
     lifecycle.ensure(opcodes); expect(cleaned).toHaveLength(fixedInputEditors.length * 2);
-    events.get('RUNTIME_DISPOSED')!(); lifecycle.ensure(opcodes); lifecycle.dispose(); expect(events.size).toBe(0);
-    expect(cleaned).toHaveLength(fixedInputEditors.length * 3);
+    // The runtime disposal of a project load is not final: getInfo for the next project registers again.
+    events.get('RUNTIME_DISPOSED')!(); expect(cleaned).toHaveLength(fixedInputEditors.length * 3);
+    lifecycle.ensure(opcodes); lifecycle.dispose(); expect(events.size).toBe(0);
+    expect(cleaned).toHaveLength(fixedInputEditors.length * 4);
   });
   it('partial failure rolls back only this attempt', () => {
     const remove = vi.fn(), count = {value: 0};
@@ -90,5 +92,43 @@ describe('optional host registration', () => {
     const lifecycle = fixedInputRegistration({gui: {blockEditors: api}});
     expect(() => lifecycle.ensure(opcodes)).toThrow('refused'); expect(remove).toHaveBeenCalledTimes(fixedInputEditors.length === 1 ? 0 : 1);
     lifecycle.dispose();
+  });
+});
+
+class FakeRuntime {
+  private readonly listeners = new Map<string, Set<() => void>>();
+  public on(event: string, listener: () => void): void {
+    if (!this.listeners.has(event)) this.listeners.set(event, new Set());
+    this.listeners.get(event)!.add(listener);
+  }
+  public off(event: string, listener: () => void): void {this.listeners.get(event)?.delete(listener);}
+  public emit(event: string): void {for (const listener of [...this.listeners.get(event) ?? []]) listener();}
+  public count(event: string): number {return this.listeners.get(event)?.size ?? 0;}
+}
+function tracking() {
+  const removes: Array<ReturnType<typeof vi.fn>> = [];
+  const register = vi.fn<(options: unknown) => () => void>(() => {const remove = vi.fn();removes.push(remove);return remove;});
+  return {register, removes, removedOnce: () => removes.every(remove => remove.mock.calls.length === 1)};
+}
+
+describe('fixed editors across project loads', () => {
+  // Every project load disposes the runtime but keeps the extension loaded for the next project.
+  it('registers the same editors again once the next project has loaded', () => {
+    const runtime = new FakeRuntime();const {register, removedOnce} = tracking();
+    const registration = fixedInputRegistration({gui: {blockEditors: {apiVersion: 1, registerFixedInputEditor: register}}, vm: {runtime}});
+    const opcodes = fixedInputEditors.flatMap(o => o.opcodes);const n = fixedInputEditors.length;
+    registration.ensure(opcodes);expect(register).toHaveBeenCalledTimes(n);
+    runtime.emit('RUNTIME_DISPOSED');expect(removedOnce()).toBe(true);
+    runtime.emit('PROJECT_LOADED');
+    expect(register).toHaveBeenCalledTimes(2 * n);
+    expect(register.mock.calls.slice(n).map(call => call[0])).toEqual(register.mock.calls.slice(0, n).map(call => call[0]));
+    runtime.emit('PROJECT_LOADED');registration.ensure(opcodes);
+    expect(register).toHaveBeenCalledTimes(2 * n);
+    runtime.emit('RUNTIME_DISPOSED');runtime.emit('PROJECT_LOADED');
+    expect(register).toHaveBeenCalledTimes(3 * n);
+    registration.dispose();expect(removedOnce()).toBe(true);
+    runtime.emit('RUNTIME_DISPOSED');runtime.emit('PROJECT_LOADED');registration.ensure(opcodes);
+    expect(register).toHaveBeenCalledTimes(3 * n);
+    expect(runtime.count('RUNTIME_DISPOSED') + runtime.count('PROJECT_LOADED')).toBe(0);
   });
 });

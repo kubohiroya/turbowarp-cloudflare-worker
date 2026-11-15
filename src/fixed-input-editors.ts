@@ -168,28 +168,50 @@ interface OptionalFixedHost {
   gui?: {blockEditors?: {apiVersion?: number; registerFixedInputEditor?: (definition: FixedInputEditorOptions) => () => void}};
   vm?: {runtime?: {on?: (event: string, listener: () => void) => void; off?: (event: string, listener: () => void) => void}};
 }
-/** Registration follows the advertised opcode membership and the optional host capability. */
+/**
+ * Registration follows the advertised opcode membership and the optional host capability.
+ *
+ * Every project load disposes the runtime, which releases the registrations, but the extension
+ * stays loaded for the next project: the same membership is registered again once that project
+ * has loaded. Only `dispose()` is final.
+ */
 export function fixedInputRegistration(scratch: unknown) {
   const host = (scratch ?? {}) as OptionalFixedHost;
   let active: unknown;
   let membership = '';
+  let lastOpcodes: readonly string[] | undefined;
   const removers: (() => void)[] = [];
   let stopped = false;
+  let released = false;
+  let listening = false;
   const clear = () => {
-    host.vm?.runtime?.off?.('RUNTIME_DISPOSED', shutdown);
     for (const remove of removers.splice(0).reverse()) remove();
     active = undefined;
     membership = '';
   };
-  const shutdown = () => {stopped = true; clear();};
-  return {
+  const unlisten = () => {
+    if (!listening) return;
+    host.vm?.runtime?.off?.('RUNTIME_DISPOSED', runtimeDisposed);
+    host.vm?.runtime?.off?.('PROJECT_LOADED', projectLoaded);
+    listening = false;
+  };
+  const runtimeDisposed = () => {clear(); released = true;};
+  const projectLoaded = () => {
+    if (!released || lastOpcodes === undefined) return;
+    released = false;
+    // A failure leaves nothing registered; it must not break the project load.
+    try {registration.ensure(lastOpcodes);} catch {/* the next getInfo retries */}
+  };
+  const shutdown = () => {stopped = true; released = false; unlisten(); clear();};
+  const registration = {
     ensure(visibleOpcodes: readonly string[]) {
       const api = host.gui?.blockEditors;
       const definitions = fixedInputEditors.filter(definition => definition.opcodes.every(opcode => visibleOpcodes.includes(opcode)));
       const key = definitions.map(definition => definition.editorId).join(',');
       if (stopped || (api === active && membership === key)) return;
       clear();
-      if (api?.apiVersion !== 1 || typeof api.registerFixedInputEditor !== 'function' || !definitions.length) return;
+      released = false; lastOpcodes = [...visibleOpcodes];
+      if (api?.apiVersion !== 1 || typeof api.registerFixedInputEditor !== 'function' || !definitions.length) {unlisten(); return;}
       try {
         for (const definition of definitions) {
           const remove = api.registerFixedInputEditor.call(api, definition);
@@ -198,9 +220,14 @@ export function fixedInputRegistration(scratch: unknown) {
         }
         active = api;
         membership = key;
-        host.vm?.runtime?.on?.('RUNTIME_DISPOSED', shutdown);
-      } catch (error) {clear(); throw error;}
+        if (!listening) {
+          host.vm?.runtime?.on?.('RUNTIME_DISPOSED', runtimeDisposed);
+          host.vm?.runtime?.on?.('PROJECT_LOADED', projectLoaded);
+          listening = true;
+        }
+      } catch (error) {clear(); unlisten(); throw error;}
     },
     dispose: shutdown
   };
+  return registration;
 }
