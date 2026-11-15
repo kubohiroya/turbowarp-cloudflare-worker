@@ -9561,31 +9561,63 @@ var fixedInputEditors = [...new Set(fields.map((f) => f.opcode))].map((opcode) =
 		settings: null
 	})
 }));
-/** Registration follows the advertised opcode membership and the optional host capability. */
+/**
+* Registration follows the advertised opcode membership and the optional host capability.
+*
+* Every project load disposes the runtime, which releases the registrations, but the extension
+* stays loaded for the next project: the same membership is registered again once that project
+* has loaded. Only `dispose()` is final.
+*/
 function fixedInputRegistration(scratch) {
 	const host = scratch ?? {};
 	let active;
 	let membership = "";
+	let lastOpcodes;
 	const removers = [];
 	let stopped = false;
+	let released = false;
+	let listening = false;
 	const clear = () => {
-		host.vm?.runtime?.off?.("RUNTIME_DISPOSED", shutdown);
 		for (const remove of removers.splice(0).reverse()) remove();
 		active = void 0;
 		membership = "";
 	};
+	const unlisten = () => {
+		if (!listening) return;
+		host.vm?.runtime?.off?.("RUNTIME_DISPOSED", runtimeDisposed);
+		host.vm?.runtime?.off?.("PROJECT_LOADED", projectLoaded);
+		listening = false;
+	};
+	const runtimeDisposed = () => {
+		clear();
+		released = true;
+	};
+	const projectLoaded = () => {
+		if (!released || lastOpcodes === void 0) return;
+		released = false;
+		try {
+			registration.ensure(lastOpcodes);
+		} catch {}
+	};
 	const shutdown = () => {
 		stopped = true;
+		released = false;
+		unlisten();
 		clear();
 	};
-	return {
+	const registration = {
 		ensure(visibleOpcodes) {
 			const api = host.gui?.blockEditors;
 			const definitions = fixedInputEditors.filter((definition) => definition.opcodes.every((opcode) => visibleOpcodes.includes(opcode)));
 			const key = definitions.map((definition) => definition.editorId).join(",");
 			if (stopped || api === active && membership === key) return;
 			clear();
-			if (api?.apiVersion !== 1 || typeof api.registerFixedInputEditor !== "function" || !definitions.length) return;
+			released = false;
+			lastOpcodes = [...visibleOpcodes];
+			if (api?.apiVersion !== 1 || typeof api.registerFixedInputEditor !== "function" || !definitions.length) {
+				unlisten();
+				return;
+			}
 			try {
 				for (const definition of definitions) {
 					const remove = api.registerFixedInputEditor.call(api, definition);
@@ -9594,14 +9626,20 @@ function fixedInputRegistration(scratch) {
 				}
 				active = api;
 				membership = key;
-				host.vm?.runtime?.on?.("RUNTIME_DISPOSED", shutdown);
+				if (!listening) {
+					host.vm?.runtime?.on?.("RUNTIME_DISPOSED", runtimeDisposed);
+					host.vm?.runtime?.on?.("PROJECT_LOADED", projectLoaded);
+					listening = true;
+				}
 			} catch (error) {
 				clear();
+				unlisten();
 				throw error;
 			}
 		},
 		dispose: shutdown
 	};
+	return registration;
 }
 function canonicalBundle(ownerId, contractId, document, ownerSource) {
 	const source = {
@@ -9699,22 +9737,54 @@ function sourceBinding(argument, bundle, read, check = read, format = "json", ui
 		}
 	};
 }
-/** The optional capability keeps legacy hosts and the startup flag safely inactive. */
+/**
+* The optional capability keeps legacy hosts and the startup flag safely inactive.
+*
+* Every project load disposes the runtime, which releases the registrations, but the extension
+* stays loaded for the next project: the same definitions are registered again once that project
+* has loaded. Only the returned remover is final.
+*/
 function registerSourceEditors(scratch, definitions) {
 	const host = scratch;
 	const api = host.gui?.blockEditors;
 	if (api?.apiVersion !== 1 || typeof api.registerSourceEditor !== "function") return () => {};
+	const register = api.registerSourceEditor;
 	const removers = [];
 	let active = true;
+	let released = false;
+	const release = () => {
+		for (const remove of removers.splice(0).reverse()) remove();
+	};
+	const registerAll = () => {
+		try {
+			for (const definition of definitions) removers.push(register.call(api, definition));
+		} catch (error) {
+			release();
+			throw error;
+		}
+	};
+	const runtimeDisposed = () => {
+		release();
+		released = true;
+	};
+	const projectLoaded = () => {
+		if (!released) return;
+		released = false;
+		try {
+			registerAll();
+		} catch {}
+	};
 	const dispose = () => {
 		if (!active) return;
 		active = false;
-		host.vm?.runtime?.off?.("RUNTIME_DISPOSED", dispose);
-		for (const remove of removers.splice(0).reverse()) remove();
+		host.vm?.runtime?.off?.("RUNTIME_DISPOSED", runtimeDisposed);
+		host.vm?.runtime?.off?.("PROJECT_LOADED", projectLoaded);
+		release();
 	};
 	try {
-		for (const definition of definitions) removers.push(api.registerSourceEditor.call(api, definition));
-		host.vm?.runtime?.on?.("RUNTIME_DISPOSED", dispose);
+		registerAll();
+		host.vm?.runtime?.on?.("RUNTIME_DISPOSED", runtimeDisposed);
+		host.vm?.runtime?.on?.("PROJECT_LOADED", projectLoaded);
 	} catch (error) {
 		dispose();
 		throw error;
