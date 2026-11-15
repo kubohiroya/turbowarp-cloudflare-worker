@@ -1,6 +1,6 @@
 {
   "name": "@kubohiroya/turbowarp-cloudflare-worker",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "Cloudflare Workers TypeScript generator and TurboWarp extension bridge for turbowarp-http-server.",
   "author": {
     "name": "Hiroya Kubo",
